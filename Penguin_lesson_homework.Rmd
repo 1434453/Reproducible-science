@@ -1,22 +1,25 @@
 ---
-title: "Homework Template"
+title: "My R Markdown Document"
+author:
+  name: '1434453'
+date: "2023-12-08"
 output: html_document
-  html_document: default
-  pdf_document: default
-date: "2023-10-09"
 ---
 
 ```{r setup}
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 install.packages("ggplot2")
 install.packages("palmerpenguins")
 install.packages("janitor")
 install.packages("dplyr")
+install.packages("tinytex")
 
 library("ggplot2")
 library("palmerpenguins")
 library("janitor")
 library("dplyr")
 library("tinytex")
+
 
 head(penguins_raw)
 ```
@@ -54,6 +57,7 @@ penguingraph2 <- ggplot(penguins2, aes(x = body_mass_g)) +
   scale_color_manual(values = c("Bill length" = "darkgreen", "Bill depth" = "red"))
 
 print(penguingraph2)
+
 # There is no need to provide the code for your bad figure, just use echo=FALSE so the code is hidden. Make sure your figure is visible after you knit it. 
 
 ```
@@ -207,7 +211,6 @@ summary(pen_model)
 anova(pen_model)
 
 # Make sure your code prints. 
-
 ```
 The adjusted R-squared value obtained for this is 0.785, which suggests that 78.5% of the variation is explained by this model. 
 Body masses relationship to species and culmen length are both significant as the p-value obtained was <2e-16. The p value is 0.01549 for the interaction between body mass, species and culmen length, this value is below 0.05 so the interaction is significant.
@@ -233,6 +236,7 @@ save_model_plot_png(penguins_clean,
                       "figures/fig01_penguinmodel.png", 
                       size = 15, res = 600, scaling=1)
 
+
 # Make sure your code prints. 
 ```
 
@@ -249,29 +253,42 @@ The values for the summary() function also tell us about the relationship betwee
 
 *Upload your RProject you created for **Question 2** and any files and subfolders used to GitHub. Do not include any identifiers such as your name. Make sure your GitHub repo is public.*
 
-*GitHub link:*
+*GitHub link:* https://github.com/1434453/Reproducible-science
 
 *You will be marked on your repo organisation and readability.*
 
 ### b) Share your repo with a partner, download, and try to run their data pipeline.
 
-*Partner's GitHub link:*
+*Partner's GitHub link:* https://github.com/1415756/Reproducible_R
 
 *You **must** provide this so I can verify there is no plagiarism between you and your partner.*
 
 ### c) Reflect on your experience running their code. (300-500 words)
 
 -   *What elements of your partner's code helped you to understand their data pipeline?*
+It was helpful to have the comments within the sections of code explaining what each line was doing.
 
 -   *Did it run? Did you need to fix anything?*
+At the start I needed to create working directory with their r-markdown file, functions folder, and data folder within to make the code run. Otherwise you could not access the data and the functions.
+Once this was done the pipeline worked, it ran without any issues and nothing needed to be fixed.
 
 -   *What suggestions would you make for improving their code to make it more understandable or reproducible, and why?*
+Explain below the code chuncks what the aim of them is to do rather than putting within the code. When explanation is put within the code then it can make the code a little harder to read and therefore the whole document a little less understandable when first reading.
+They could have also loaded all of the packages at the beginning of the code, this would make more sense than to just load them when needed. As it would make the code flow better. Logical order to the code.
+They also filtered some of the data within the statistical methods section, as this is not a statistical method but a pre-requiste to a statisitical method I think it would make more sense to be included in the section previously.
 
 -   *If you needed to alter your partner's figure using their code, do you think that would be easy or difficult, and why?*
+I think it would be easy as the code for the figures are laid out in the code chunks and have their own title. Therefore as it would be easy to find which section of code the graph you wanted to alter was in and thus easier to change the code.
+
 
 ### d) Reflect on your own code based on your experience with your partner's code and their review of yours. (300-500 words)
 
 -   *What improvements did they suggest, and do you agree?*
+It was suggested that I include more details about what I am doing within the code chunks on my r-markdown file. This would include commenting line by line explaining what the code does so it is easier to read and assess. I agree with this improvement as I believe it would make sense to include a short description so it is clear what explanation aligns with a specific peice of code. However, I believe that these comments should be short as to not overcrowd the code and make it less easy to read.
+It was also suggested that there should be more detailed explanations when describing the statistics of the model. This includes referring clearly back to the hypothesis.
+Alongside this, it was also recommended that I split the single hypotheses into multiple different hypotheses as this would make it easier to test the hypotheses when multiple metrics such as significance of the slope and significance of the intercept were used.
 
 -   *What did you learn about writing code for other people?*
+I learnt that it is very important to explain each step in as much depth as possible so it is easier for the person reading the code to be able to understand what your intention is within each chunk. As well as making it easier to figure out what every line of code means, this would be especially helpful if you had never used the code that they have used before. 
+
 
